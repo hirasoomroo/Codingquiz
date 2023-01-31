@@ -13,41 +13,44 @@
     <div class= "container">
         <div id="startpage">
             <h2>Coding quiz designed to test your knowledge.</h2>
-            <h2>Your highest score will be saved with your initials!</h2>
-            <button id ="startbutton">Start</button>
-            <button id = "highscore">High score</button>
+            
+            <button id ="startButton" onclick="start">Start</button>
+                   
+                <div id="endGameBtns">
+                    <button id="playAgain" onclick="replayQuiz()">Play Again</button>
+                    <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
+                </div>
+             
         </div>
 
-    <div id = "quiz">
-        <div id="time remaining">Time Remaining:</div>
+   
+         
+        <div id= "question"></div>
+        <h2 id="countdown"></h2>
+        <button id="submit"></button>
+        <div id="results"></div>
+        <p id="main"></p>
         <button id="a" onclick="checkAnswer('a')">A</button>
         <button id="b" onclick="checkAnswer('b')">B</button>            
         <button id="c" onclick="checkAnswer('c')">C</button>
         <button id="d" onclick="checkAnswer('d')">D</button>
-        <div id="result"></div>
+        
+        <button id="submitScore" onclick="submit">Submit</button>
+
+      
        
     </div>
     </div>
-    <div id="gameover">
-
-        <div id="finalScore"></div>
-        <input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
-        <button id="submitScore">Submit</button>
-
-    <div id="highscorepage"></div>
-    <div id= "highscoreheader"></div>
+   <div id="gameover">
     
 
-    <div id= "buttonsend"> 
-        <button id="playAgain" onclick="replayQuiz()">Play Again</button>
-        <button id="clearHighscore" onclick="clearScore()">Clear Highscores</button>
-    </div>
-</body>
 
- 
+
      
     
     <script src="assets/js/script.js"></script>
 </body>
 
 </html>
+
+

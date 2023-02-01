@@ -1,135 +1,224 @@
-
-var quizBody = document.getElementById("quiz");
-var timerforQuiz = document.getElementById ("timercount");
-var startButton = document.getElementById("startbutton");
-
-
-var startpagediv = document.getElementById("startpage");
-
+//create the var for the quiz
+var quizBody = document.querySelector("#quiz");
+var resultsEl = document.querySelector("#result");
+var finalScoreEl = document.querySelector("#finalScore");
+var gameoverDiv = document.querySelector("#gameover");
+var questionsEl = document.querySelector("#questions");
+var timer = document.querySelector("#timer");
+var startQuizButton = document.querySelector("#startbtn");
+var startQuizDiv = document.querySelector("#startpage");
+var highscoreContainer = document.querySelector("#highscoreContainer");
+var highscoreDiv = document.querySelector("#scorePage");
+var inputName = document.querySelector("#initials");
+var highscoreDisplayName = document.querySelector("#highscore-initials");
+var endGame = document.querySelector("#endGameBtns");
+var submitScoreBtn = document.querySelector("#submitScore");
+var displayScore = document.querySelector("#highscore-score");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
 var buttonD = document.getElementById("d");
 
-var timerEl = document.getElementById('countdown');
-var mainEl = document.getElementById('main');
-
-var questiondiv = document.querySelector("#question")
-var gameoverdiv= document.querySelector("#gameover");
-var buttonsenddiv= document.querySelector("#buttonsend");
-
-var resultsdiv= document.querySelector("#results");
-
+// array of questions to generate for the quiz
 var quizQuestions = [{
-    question: "The If/else statement is enclosed in?",
-    choiceA: "square brackets",
-    choiceB: "parentheses",
-    choiceC: "curly brackets",
-    choiceD: "quotes",
-    correctAnswer: "c"},
+  question: "The If/else statement is enclosed in?",
+  choiceA: "square brackets",
+  choiceB: "parentheses",
+  choiceC: "curly brackets",
+  choiceD: "quotes",
+  correctAnswer: "c"},
+{
+  question: "What does DOM stand for?",
+  choiceA: "Document Object Model",
+  choiceB: "Display Object Management",
+  choiceC: "Digital Ordinance Model",
+  choiceD: "Desktop Oriented Mode",
+  correctAnswer: "a"},
+ {
+  question: "What is used primarily to add styling to a web page?",
+  choiceA: "HTML",
+  choiceB: "CSS",
+  choiceC: "Python",
+  choiceD: "React.js",
+  correctAnswer: "b"},
   {
-    question: "What does DOM stand for?",
-    choiceA: "Document Object Model",
-    choiceB: "Display Object Management",
-    choiceC: "Digital Ordinance Model",
-    choiceD: "Desktop Oriented Mode",
-    correctAnswer: "a"},
-   {
-    question: "What is used primarily to add styling to a web page?",
-    choiceA: "HTML",
-    choiceB: "CSS",
-    choiceC: "Python",
-    choiceD: "React.js",
-    correctAnswer: "b"},
-    {
-    question: "When is localStorage data cleared?",
-    choiceA: "No expiration time",
-    choiceB: "On page reload",
-    choiceC: "On browser close",
-    choiceD: "On computer restart",
-    correctAnswer: "a"},  
-    {
-    question: "What does WWW stand for?",
-    choiceA: "Web World Workings",
-    choiceB: "Weak Winter Wind",
-    choiceC: "World Wide Web",
-    choiceD: "Wendy Wants Waffles",
-    correctAnswer: "c"},
-    {
-    question: "What do we use to add an image?",
-    choiceA: "img href",
-    choiceB: "img src",
-    choiceC: "img class",
-    choiceD: "id",
-    correctAnswer: "b"},
-        
-    
-    ];
-
-var questionIndex = 0;
-
-// Timer that counts down from 75
-function countdown() {
-  var timeLeft = 75;
-
-  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = timeLeft + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-     
-    }
-  }, 1000);
-}
-countdown();
-
-
-//function to generate quiz questions
-function startQuiz(){ 
-  console.log("hello");
-  gameoverdiv.style.display = "none";
-  startpagediv.style.display = "none";
-
-  generateQuizQuestion();
-
-}
-
-function generateQuizQuestion() {
-  var currentquestion = quizQuestions [questionIndex];
-  questiondiv.textContent = currentquestion.question
-  buttonA.textContent= currentquestion.choiceA
-  buttonB.textContent = currentquestion.choiceB
-  buttonC.textContent= currentquestion.choiceC
-  buttonD.textContent = currentquestion.choiceD
-}
-function checkAnswer(choice) {
-console.log(choice);
-var answer = quizQuestions[questionIndex].correctAnswer
-
-if (choice!== answer){
-//subtracts 10 seconds from timer
+  question: "When do we use https?",
+  choiceA: "all the time",
+  choiceB: "none of the time",
+  choiceC: "On browser close",
+  choiceD: "On computer restart",
+  correctAnswer: "a"},  
+  {
+  question: "What does WWW stand for?",
+  choiceA: "Web World Workings",
+  choiceB: "Winter Wonderland Win",
+  choiceC: "World Wide Web",
+  choiceD: "none of the above",
+  correctAnswer: "c"},
+  {
+  question: "What do we use to add an image?",
+  choiceA: "img href",
+  choiceB: "img src",
+  choiceC: "img class",
+  choiceD: "id",
+  correctAnswer: "b"},
+      
   
+  ];
+        
+// Creating a function to check the answer, so we can tell the correct scores at the end.
+
+
+function checkAnswer(answer){
+  correct = quizQuestions[currentQuestionIndex].correctAnswer;
+
+    if (answer === correct && currentQuestionIndex !== finalQuestions){
+        score++;
+        
+        currentQuestionIndex++;
+        generateQuizQuestion();
+       
+    }else if (answer !== correct && currentQuestionIndex !== finalQuestions){
+       
+        currentQuestionIndex++;
+        generateQuizQuestion();
+        
+    }else{
+        showScore();
+    }
+}
+
+// This button starts the quiz!
+startQuizButton.addEventListener("click",startQuiz);
+
+
+// Other global variables
+var finalQuestions = quizQuestions.length;
+var currentQuestionIndex = 0;
+var timeLeft = 76;
+var timerInterval;
+var score = 0;
+var correct;
+
+// Generating the questions and choices
+function generateQuizQuestion(){
+    gameoverDiv.style.display = "none";
+    if (currentQuestionIndex === finalQuestions){
+        return showScore();
+    } 
+    var currentQuestion = quizQuestions[currentQuestionIndex];
+    questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
+    buttonA.innerHTML = currentQuestion.choiceA;
+    buttonB.innerHTML = currentQuestion.choiceB;
+    buttonC.innerHTML = currentQuestion.choiceC;
+    buttonD.innerHTML = currentQuestion.choiceD;
+};
+
+//Start quiz, hide the game over tag
+function startQuiz(){
+    gameoverDiv.style.display = "none";
+    startQuizDiv.style.display = "none";
+    generateQuizQuestion();
+
+
+    
+    
+    // This button starts the quiz!
+    startQuizButton.addEventListener("click",startQuiz);
+    
+    
+    //Timer
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        timer.textContent = "Time left: " + timeLeft;
+    
+        if(timeLeft === 0) {
+          clearInterval(timerInterval);
+          showScore();
+        }
+      }, 1000);
+    quizBody.style.display = "block";
+}
+// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
+function showScore(){
+    quizBody.style.display = "none"
+    gameoverDiv.style.display = "flex";
+    clearInterval(timerInterval);
+    inputName.value = "";
+    finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+}
+
+// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
+// as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
+submitScoreBtn.addEventListener("click", function highscore(){
+    
+    
+    if(inputName.value === "") {
+        alert("Initials cannot be blank");
+        return false;
+    }else{
+        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        var currentUser = inputName.value.trim();
+        var currentHighscore = {
+            name : currentUser,
+            score : score
+        };
+    
+        gameoverDiv.style.display = "none";
+        highscoreContainer.style.display = "flex";
+        highscoreDiv.style.display = "block";
+        endGameBtns.style.display = "flex";
+        
+        savedHighscores.push(currentHighscore);
+        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+        generateHighscores();
+
+    }
+    
+});
+
+// This function clears the list for the high scores and generates a new high score list from local storage
+function generateHighscores(){
+    highscoreDisplayName.innerHTML = "";
+    displayScore.innerHTML = "";
+    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    for (i=0; i<highscores.length; i++){
+        var newNameSpan = document.createElement("li");
+        var newScoreSpan = document.createElement("li");
+        newNameSpan.textContent = highscores[i].name;
+        newScoreSpan.textContent = highscores[i].score;
+        highscoreDisplayName.appendChild(newNameSpan);
+        displayScore.appendChild(newScoreSpan);
+    }
+}
+
+// This function displays the high scores page while hiding all of the other pages from 
+function Highscore(){
+    startQuizDiv.style.display = "none"
+    gameoverDiv.style.display = "none";
+    highscoreContainer.style.display = "flex";
+    highscoreDiv.style.display = "block";
+    endGameBtns.style.display = "flex";
+
+    generateHighscores();
+}
+
+// This function clears the local storage of the high scores as well as clearing the text from the high score board
+function clearScore(){
+    window.localStorage.clear();
+    highscoreDisplayName.textContent = "";
+    displayScore.textContent = "";
+}
+
+// This will restart the quiz
+function replayQuiz(){
+    highscoreContainer.style.display = "none";
+    gameoverDiv.style.display = "none";
+    startQuizDiv.style.display = "flex";
+    timeLeft = 76;
+    score = 0;
+    currentQuestionIndex = 0;
 }
 
 
 
-questionIndex ++ 
-generateQuizQuestion();
-
-}
-
-
-var finalquestion = 6;
-var finalquestion = quizQuestions 

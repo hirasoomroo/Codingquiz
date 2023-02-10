@@ -8,11 +8,11 @@ var timer = document.querySelector("#timer");
 var startQuizButton = document.querySelector("#startbtn");
 var startQuizDiv = document.querySelector("#startpage");
 var highscoreContainer = document.querySelector("#highscoreContainer");
-var highscoreDiv = document.querySelector("#scorePage");
+var highestscoreDiv = document.querySelector("#scorePage");
 var inputName = document.querySelector("#initials");
 var highscoreDisplayName = document.querySelector("#highscore-initials");
 var endGame = document.querySelector("#endGameBtns");
-var submitScoreBtn = document.querySelector("#submitScore");
+var scorebutton = document.querySelector("#submitScore");
 var displayScore = document.querySelector("#highscore-score");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
@@ -88,7 +88,7 @@ function checkAnswer(answer){
     }
 }
 
-// This button starts the quiz!
+// This button starts the quiz
 startQuizButton.addEventListener("click",startQuiz);
 
 
@@ -150,11 +150,11 @@ function showScore(){
 
 // On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
 // as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
-submitScoreBtn.addEventListener("click", function highscore(){
+scorebutton.addEventListener("click", function highscore(){
     
     
     if(inputName.value === "") {
-        alert("Initials cannot be blank");
+        //alert("Initials cannot be blank");
         return false;
     }else{
         var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
@@ -166,7 +166,7 @@ submitScoreBtn.addEventListener("click", function highscore(){
     
         gameoverDiv.style.display = "none";
         highscoreContainer.style.display = "flex";
-        highscoreDiv.style.display = "block";
+        highestscoreDiv.style.display = "block";
         endGameBtns.style.display = "flex";
         
         savedHighscores.push(currentHighscore);
@@ -183,12 +183,12 @@ function generateHighscores(){
     displayScore.innerHTML = "";
     var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     for (i=0; i<highscores.length; i++){
-        var newNameSpan = document.createElement("li");
-        var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
-        highscoreDisplayName.appendChild(newNameSpan);
-        displayScore.appendChild(newScoreSpan);
+        var nameSpans = document.createElement("li");
+        var scoresSpan = document.createElement("li");
+        nameSpans.textContent = highscores[i].name;
+        scoresSpan.textContent = highscores[i].score;
+        highscoreDisplayName.appendChild(nameSpans);
+        displayScore.appendChild(scoresSpan);
     }
 }
 
@@ -197,7 +197,7 @@ function Highscore(){
     startQuizDiv.style.display = "none"
     gameoverDiv.style.display = "none";
     highscoreContainer.style.display = "flex";
-    highscoreDiv.style.display = "block";
+    highestscoreDiv.style.display = "block";
     endGameBtns.style.display = "flex";
 
     generateHighscores();
@@ -219,6 +219,5 @@ function replayQuiz(){
     score = 0;
     currentQuestionIndex = 0;
 }
-
 
 

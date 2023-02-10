@@ -7,6 +7,7 @@
       color: white;
       text-shadow: 1.5px 1px 3px black;
       list-style-type: none;
+      text-align: center;
   }
   
   p{
@@ -89,6 +90,7 @@
   }
   
   #scorePage{
+    text-align: center;
       display: none;
       width: 30%;
       border: solid;
@@ -99,15 +101,17 @@
   }
   
   #highscore-header{
-      display:flex;
+    text-align: center;  
+    display:flex;
       justify-content: space-around;
       border-bottom-style: outset;
       margin-bottom: 10px;
       background-color: #5ef1cf;
       color: #eeeeee;
-      font-family: sans-serif;
+      font-family: arial;
   }
   #highscoreContainer{
+    text-align: center;
       height: 100%;
       width: 100%;
       display: none;
@@ -117,6 +121,7 @@
   }
   
   #initials{
+    text-align: center;
       margin: .5rem;
       height: 1.75rem;
   }
@@ -129,14 +134,15 @@
   }
   
   #highscore-score{
-      float: right;
+      
+      display: inline-block;
       padding-right: 8.75rem;
       font-family: sans-serif;
       font-weight: bold;
   }
   
   #finalScore{
-      margin-bottom: 10px;
+      
       font-size: x-large;
       font-family: sans-serif;
       font-weight: bold;

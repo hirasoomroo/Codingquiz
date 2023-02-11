@@ -1,7 +1,15 @@
 :root{
   background-color: rgb(173, 80, 80);
+  background-image: url('https://media.istockphoto.com/id/865457032/vector/abstract-futuristic-cyberspace-with-binary-code-matrix-background-with-digits-well-organized.jpg?s=612x612&w=0&k=20&c=IQcdedY8fn_DMq6nwc5MaHUBe0H0d5DPyibHR8J2usk=');
   }
-  
+  h2{
+    text-emphasis-color: white;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+ 
   li{
       padding-bottom: 3px;
       color: white;
@@ -58,6 +66,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      color: snow;
   }
   
   #timer{
@@ -72,7 +81,9 @@
   #quiz {
       display: none;
   }
-  
+  p{
+    color: snow;
+  }
   #result {
       display: none;
   }
@@ -86,9 +97,9 @@
   
   #highScore{
       height: 1.5rem;
-    
+    color: snow;
   }
-  
+ 
   #scorePage{
     text-align: center;
       display: none;
@@ -101,23 +112,25 @@
   }
   
   #highscore-header{
-    text-align: center;  
-    display:flex;
-      justify-content: space-around;
-      border-bottom-style: outset;
-      margin-bottom: 10px;
-      background-color: #5ef1cf;
-      color: #eeeeee;
-      font-family: arial;
+   height: 100%;
+   
+   display:flex;
+    justify-content: space-around;
+    border-bottom-style: outset;
+    margin-bottom: 10px;
+    background-color: #bc8ecf;
+    
+    font-family: sans-serif;
   }
   #highscoreContainer{
-    text-align: center;
-      height: 100%;
-      width: 100%;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+   
+        height: 100%;
+        width: 100%;
+        display: flex; 
+        flex-direction:column ;
+        align-items: center;
+        justify-content: center;
+  
   }
   
   #initials{
@@ -128,23 +141,23 @@
   
   #highscore-initials{
       display: inline-block;
-      padding-left: 9.5rem;
-      font-family: sans-serif;
+      padding-left: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
   }
   
   #highscore-score{
       
       display: inline-block;
-      padding-right: 8.75rem;
-      font-family: sans-serif;
+      padding-right: 1.75rem;
+      font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
   }
   
   #finalScore{
       
       font-size: x-large;
-      font-family: sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
   }
   

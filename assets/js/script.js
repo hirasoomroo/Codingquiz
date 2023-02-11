@@ -7,13 +7,7 @@ var questionsEl = document.querySelector("#questions");
 var timer = document.querySelector("#timer");
 var startQuizButton = document.querySelector("#startbtn");
 var startQuizDiv = document.querySelector("#startpage");
-var highscoreContainer = document.querySelector("#highscoreContainer");
-var highestscoreDiv = document.querySelector("#scorePage");
-var inputName = document.querySelector("#initials");
-var highscoreDisplayName = document.querySelector("#highscore-initials");
-var endGame = document.querySelector("#endGameBtns");
-var scorebutton = document.querySelector("#submitScore");
-var displayScore = document.querySelector("#highscore-score");
+
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
@@ -35,6 +29,16 @@ var quizQuestions = [{
   choiceD: "Desktop Oriented Mode",
   correctAnswer: "a"},
  {
+
+    question: "What is the dark web used for?",
+    choiceA: "illegal activity",
+    choiceB: "To buy and sell things like amazon",
+    choiceC: "we shouldn't be on it so I don't know",
+    choiceD: "none of the above",
+    correctAnswer: "c"},
+
+
+{
   question: "What is used primarily to add styling to a web page?",
   choiceA: "HTML",
   choiceB: "CSS",
@@ -48,13 +52,8 @@ var quizQuestions = [{
   choiceC: "On browser close",
   choiceD: "On computer restart",
   correctAnswer: "a"},  
-  {
-  question: "What does WWW stand for?",
-  choiceA: "Web World Workings",
-  choiceB: "Winter Wonderland Win",
-  choiceC: "World Wide Web",
-  choiceD: "none of the above",
-  correctAnswer: "c"},
+  
+
   {
   question: "What do we use to add an image?",
   choiceA: "img href",
@@ -139,6 +138,16 @@ function startQuiz(){
       }, 1000);
     quizBody.style.display = "block";
 }
+
+
+var highscoreContainer = document.querySelector("#highscoreContainer");
+var highestscoreDiv = document.querySelector("#scorePage");
+var inputName = document.querySelector("#initials");
+var highscoreDisplayName = document.querySelector("#highscore-initials");
+var endGame = document.querySelector("#endGameBtns");
+var scorebutton = document.querySelector("#submitScore");
+var displayScore = document.querySelector("#highscore-score");
+
 // This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
 function showScore(){
     quizBody.style.display = "none"

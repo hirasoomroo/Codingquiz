@@ -71,3 +71,10 @@ The URL of the functional, deployed application.
 
 The URL of the GitHub repository, with a unique name and a readme describing the project.
 
+LINK: https://github.com/hirasoomroo/Codingquiz
+
+my github/; https://github.com/hirasoomroo/Codingquiz
+link to quiz: 
+
+
+file:///Users/hira/bootcamp/codingquiz/index.html

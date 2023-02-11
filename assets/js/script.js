@@ -5,7 +5,7 @@ var finalScoreEl = document.querySelector("#finalScore");
 var gameoverDiv = document.querySelector("#gameover");
 var questionsEl = document.querySelector("#questions");
 var timer = document.querySelector("#timer");
-var startQuizButton = document.querySelector("#startbtn");
+var startQuizButton = document.querySelector("#startbutton");
 var startQuizDiv = document.querySelector("#startpage");
 
 var buttonA = document.getElementById("a");
@@ -67,6 +67,7 @@ var quizQuestions = [{
         
 // Creating a function to check the answer, so we can tell the correct scores at the end.
 
+var finalQuestions = quizQuestions.length;
 
 function checkAnswer(answer){
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
@@ -91,8 +92,8 @@ function checkAnswer(answer){
 startQuizButton.addEventListener("click",startQuiz);
 
 
-// Other global variables
-var finalQuestions = quizQuestions.length;
+//create more variables to create the rest of the quiz questions and end of quiz
+
 var currentQuestionIndex = 0;
 var timeLeft = 76;
 var timerInterval;
@@ -105,6 +106,8 @@ function generateQuizQuestion(){
     if (currentQuestionIndex === finalQuestions){
         return showScore();
     } 
+
+//pull choices by running through the array
     var currentQuestion = quizQuestions[currentQuestionIndex];
     questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
     buttonA.innerHTML = currentQuestion.choiceA;
@@ -118,9 +121,6 @@ function startQuiz(){
     gameoverDiv.style.display = "none";
     startQuizDiv.style.display = "none";
     generateQuizQuestion();
-
-
-    
     
     // This button starts the quiz!
     startQuizButton.addEventListener("click",startQuiz);
@@ -140,11 +140,11 @@ function startQuiz(){
 }
 
 
-var highscoreContainer = document.querySelector("#highscoreContainer");
+var highscorepageContainer = document.querySelector("#showscorepageContainer");
 var highestscoreDiv = document.querySelector("#scorePage");
-var inputName = document.querySelector("#initials");
+var enterName = document.querySelector("#initials");
 var highscoreDisplayName = document.querySelector("#highscore-initials");
-var endGame = document.querySelector("#endGameBtns");
+var endGame = document.querySelector("#endGameButtons");
 var scorebutton = document.querySelector("#submitScore");
 var displayScore = document.querySelector("#highscore-score");
 
@@ -153,7 +153,7 @@ function showScore(){
     quizBody.style.display = "none"
     gameoverDiv.style.display = "flex";
     clearInterval(timerInterval);
-    inputName.value = "";
+    enterName.value = "";
     finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
@@ -162,21 +162,21 @@ function showScore(){
 scorebutton.addEventListener("click", function highscore(){
     
     
-    if(inputName.value === "") {
+    if(enterName.value === "") {
         //alert("Initials cannot be blank");
         return false;
     }else{
         var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-        var currentUser = inputName.value.trim();
+        var currentUser = enterName.value.trim();
         var currentHighscore = {
             name : currentUser,
             score : score
         };
     
         gameoverDiv.style.display = "none";
-        highscoreContainer.style.display = "flex";
+        showscorepageContainer.style.display = "flex";
         highestscoreDiv.style.display = "block";
-        endGameBtns.style.display = "flex";
+        endGameButtons.style.display = "flex";
         
         savedHighscores.push(currentHighscore);
         localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
@@ -205,9 +205,9 @@ function generateHighscores(){
 function Highscore(){
     startQuizDiv.style.display = "none"
     gameoverDiv.style.display = "none";
-    highscoreContainer.style.display = "flex";
+    showscorepageContainer.style.display = "flex";
     highestscoreDiv.style.display = "block";
-    endGameBtns.style.display = "flex";
+    endGameButtons.style.display = "flex";
 
     generateHighscores();
 }
@@ -221,7 +221,7 @@ function clearScore(){
 
 // This will restart the quiz
 function replayQuiz(){
-    highscoreContainer.style.display = "none";
+    showscorepageContainer.style.display = "none";
     gameoverDiv.style.display = "none";
     startQuizDiv.style.display = "flex";
     timeLeft = 76;
